@@ -1,0 +1,19 @@
+=head1 NAME
+
+Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
+
+=head1 VERSION
+
+version 0.001
+
+=head1 AUTHOR
+
+Mike Friedman <friedo@friedo.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Mike Friedman.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
