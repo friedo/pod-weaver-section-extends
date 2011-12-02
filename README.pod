@@ -4,7 +4,19 @@ Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
 
 =head1 VERSION
 
-version 0.001
+version 0.002
+
+=head1 SYNOPSIS
+
+In your C<weaver.ini>:
+
+    [Extends]
+
+=head1 DESCRIPTION
+
+This L<Pod::Weaver> section plugin creates an "EXTENDS" section in your POD
+which will contain a list of your class's parent classes. It accomplishes
+this by attempting to compile your class and inspecting its C<@ISA>. 
 
 =head1 AUTHOR
 
