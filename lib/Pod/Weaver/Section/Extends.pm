@@ -30,11 +30,7 @@ sub weave_section {
     $module =~ s{/}{::};
     $module =~ s/\.pm//;
 
-    print "module = [$module]";
-
     my @parents = $self->_get_parents( $module );        
-
-    print "parents = " . Dumper \@parents;
 
     return unless @parents;
 
