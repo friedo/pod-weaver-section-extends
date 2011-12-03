@@ -27,7 +27,7 @@ sub weave_section {
 
     my $module = $file;
     $module =~ s{^lib/}{};    # assume modules live under lib
-    $module =~ s{/}{::};
+    $module =~ s{/}{::}g;
     $module =~ s/\.pm//;
 
     my @parents = $self->_get_parents( $module );        
