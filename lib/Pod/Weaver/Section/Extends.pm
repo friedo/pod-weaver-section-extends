@@ -10,13 +10,13 @@ use Moose;
 with 'Pod::Weaver::Role::Section';
 
 use aliased 'Pod::Elemental::Element::Nested';
-use aliased 'Pod::Elemental::Element::Pod5::Verbatim';
 use aliased 'Pod::Elemental::Element::Pod5::Command';
 
 sub weave_section { 
     my ( $self, $doc, $input ) = @_;
 
     my $file = $input->{filename};
+    return unless $file =~ m{^lib/};
 
     # yeah, this is a stupid way to do it. it's only for generating
     # docs though. shut up.
