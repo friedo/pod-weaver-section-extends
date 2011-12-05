@@ -24,6 +24,8 @@ sub weave_section {
     $module =~ s{/}{::}g;
     $module =~ s/\.pm//;
 
+    unshift @INC, './lib';    # assume we want modules from the CWD
+
     load $module;
 
     my @parents = $self->_get_parents( $module );        
@@ -39,7 +41,7 @@ sub weave_section {
         ( map { 
             Command->new( {
                 command    => 'item',
-                content    => sprintf 'L<%s>', $_
+                content    => sprintf '* L<%s>', $_
             } ),
         } @parents ),
         Command->new( { 
@@ -55,6 +57,8 @@ sub weave_section {
             content   => 'EXTENDS',
             children  => \@pod
         } );
+
+    shift @INC;
 
 }
 
