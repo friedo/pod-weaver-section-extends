@@ -4,7 +4,7 @@ Pod::Weaver::Section::Extends - Add a list of parent classes to your POD.
 
 =head1 VERSION
 
-version 0.007
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -16,7 +16,37 @@ In your C<weaver.ini>:
 
 This L<Pod::Weaver> section plugin creates an "EXTENDS" section in your POD
 which will contain a list of your class's parent classes. It accomplishes
-this by attempting to compile your class and inspecting its C<@ISA>. 
+this by loading your class and inspecting their C<@ISA>. 
+
+All classes (*.pm files) in your distribution's lib directory will be loaded.
+Classes which do not have parent classes will be skipped. 
+
+=head1 CAVEAT
+
+In case you use L<Dist::Zilla> to install dependencies of your distribution,
+you might encounter a quirk caused by this plugin. If you run C<dzil listdeps>, 
+dzil will load this module which in turn will load all classes in lib which in 
+turn may want to load classes which are not yet installed. Currently, there 
+seems to be no easy way around this with L<Dist::Zilla> alone. But there are 
+workarounds. You could, for example, eliminate weaver.ini during the 
+installation process:
+
+    #temporarily remove weaver.ini during install
+    cpanm Pod::Weaver::Section::Consumes
+    mv weaver.ini _weaver.ini
+    dzil authordeps | cpanm
+    dzil listdeps | cpanm
+    mv _weaver.ini weaver.ini
+
+Or install dependencies before you run listdeps, for example by adding them
+as authordeps to dist.ini.
+
+    #dist.ini 
+    #authordep JSON = 2.57
+
+=head1 SEE ALSO
+
+L<Pod::Weaver::Section::Consumes> 
 
 =head1 AUTHOR
 
