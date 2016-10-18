@@ -41,7 +41,7 @@ sub weave_section {
         ( map { 
             Command->new( {
                 command    => 'item',
-                content    => sprintf '* L<%s>', $_
+                content    => sprintf '* L<%s|%s>', ($_ x 2)
             } ),
         } @parents ),
         Command->new( { 
